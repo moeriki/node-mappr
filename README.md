@@ -162,7 +162,7 @@ const user = mapUser({ firstName: 'Jane', lastName: 'Doe' });
 
 **Custom getters and FP**
 
-Allowing the usage of custom getter functions makes a FP library such as [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) a great *(read: essential)* addition to MAPPR.
+Allowing the usage of custom getter functions makes an FP library such as [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) a great *(read: essential)* addition to MAPPR.
 
 ```javascript
 var _ = require('lodash/fp');
