@@ -2,7 +2,7 @@
 
 # MAPPR
 
-MAPPR is a tiny (2,5kb) JavaScript util to assist with POJO (Plain Old JavaScript Object) to POJO mapper.
+MAPPR is a tiny (2,5kb) JavaScript util to assist with POJO (Plain Old JavaScript Object) to POJO mapping.
 
 **Advantages**
 
@@ -74,8 +74,8 @@ var user = mapUser({
 });
 
 // user = {
-//   account: {
-//     username: 'Jane'
+//   username: {
+//     name: 'Jane'
 //   }
 // }
 ```
@@ -111,7 +111,7 @@ var result = mapPerson({
 composeMappers(...mapper:object):function
 ```
 
-`composeMappers` allows you to combine multiple mappers together and merge their result into one destination object.
+`composeMappers` allows you to combine multiple mappers together and merge their result into one object.
 
 ```javascript
 var mapName = createMapper({
@@ -125,7 +125,7 @@ var mapAddress = createMapper({
   }
 });
 
-var mapUser = composeMappers(mapUser, mapAddress);
+var mapUser = composeMappers(mapName, mapAddress);
 
 var user = mapUser({
   user: {
@@ -216,4 +216,5 @@ var user = mapUser({
 
 ## TODO
 
+* better, more varied examples
 * map data conditionally
