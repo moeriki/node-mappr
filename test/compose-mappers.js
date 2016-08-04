@@ -1,7 +1,6 @@
 // vendor modules
 
 import test from 'ava';
-import { fp } from 'lodash';
 
 // modules
 

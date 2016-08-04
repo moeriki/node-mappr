@@ -19,6 +19,7 @@
   "author": "Dieter Luypaert",
   "license": "MIT",
   "dependencies": {
+    "lodash.flow": "^3.4.0",
     "lodash.get": "^4.4.1",
     "lodash.isplainobject": "^4.0.5",
     "lodash.mapvalues": "^4.5.1"
