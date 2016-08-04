@@ -2,7 +2,7 @@
 
 # MAPPR
 
-MAPPR is a tiny (2,5kb) JavaScript POJO (Plain Old JavaScript Object) to POJO mapper.
+MAPPR is a tiny (2,5kb) JavaScript util to assist with POJO (Plain Old JavaScript Object) to POJO mapper.
 
 **Advantages**
 
@@ -10,7 +10,7 @@ MAPPR is a tiny (2,5kb) JavaScript POJO (Plain Old JavaScript Object) to POJO ma
 
 ## Usage
 
-MAPPR exposes two utility functions.
+MAPPR exposes three utility functions.
 
 **ES5**
 
@@ -18,12 +18,13 @@ MAPPR exposes two utility functions.
 var mappr = require('mappr');
 var createMapper = mappr.createMapper;
 var composeMappers = mappr.composeMappers;
+var format = mappr.format;
 ```
 
 **ES2015**
 
 ```javascript
-import { createMapper, composeMappers } from 'mappr';
+import { createMapper, composeMappers, format } from 'mappr';
 ```
 
 ### createMapper
@@ -141,6 +142,10 @@ var user = mapUser({
 //   address: 'Barstreet 18'
 // }
 ```
+
+### format
+
+`//TODO`
 
 ## Advanced usage
 
