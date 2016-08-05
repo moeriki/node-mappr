@@ -27,10 +27,10 @@
   "devDependencies": {
     "ava": "^0.15.2",
     "babel-cli": "^6.11.4",
-    "babel-core": "^6.11.4",
+    "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-2": "^6.11.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-2": "^6.13.0",
     "eslint": "^3.2.2",
     "eslint-config-muriki": "^3.3.3",
     "eslint-plugin-import": "^1.12.0",
