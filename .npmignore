@@ -1,0 +1,8 @@
+.babelrc
+.eslintrc.js
+.gitignore
+.nyc_output
+coverage
+node_modules
+src/
+test/
