@@ -30,7 +30,7 @@ import { createMapper, composeMappers, format } from 'mappr';
 ### createMapper
 
 ```
-createMapper(mapper:object):function
+createMapper(mapper:string|object|function, ...formatters:function):function
 ```
 
 `createMapper` allows you to create a mapper function based on a mapper object.
@@ -105,6 +105,21 @@ var result = mapPerson({
 // }
 ```
 
+**Additional formatting**
+
+`createMapper` accepts additional functions as rest parameters. Use this to format the output of your mapper.
+
+```javascript
+var user = { name: 'John H. Benjamin' };
+var mapName = createMapper(
+  'name',
+  function (name) { return name.toUpperCase(); },
+  function (name) { return name.split('').reverse().join(''); },
+);
+var name = mapName(user);
+// name = 'NIMAJNEB .H NHOJ'
+```
+
 ### composeMappers
 
 ```
@@ -142,10 +157,6 @@ var user = mapUser({
 //   address: 'Barstreet 18'
 // }
 ```
-
-### format
-
-`//TODO`
 
 ## Advanced usage
 

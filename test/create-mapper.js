@@ -75,3 +75,17 @@ test('should throw if mapper is no function|object|string', (t) => {
   // true is not a valid mapper
   t.throws(() => mapper({}));
 });
+
+test('should apply multiple formatters', (t) => {
+  // setup
+  const user = { name: 'John H. Benjamin' };
+  const mapper = createMapper(
+    'name',
+    (name) => name.toUpperCase(),
+    (name) => name.split('').reverse().join(''),
+  );
+  // test
+  const name = mapper(user);
+  // verify
+  t.is(name, 'NIMAJNEB .H NHOJ');
+});
