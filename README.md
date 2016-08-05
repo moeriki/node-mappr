@@ -1,6 +1,6 @@
 # MAPPR
 
-MAPPR is a tiny (2,5kb) JavaScript util to assist with POJO (Plain Old JavaScript Object) to POJO mapping.
+MAPPR is a tiny JavaScript utility to assist with object to object mapping.
 
 **Advantages**
 
