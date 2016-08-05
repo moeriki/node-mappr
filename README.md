@@ -18,13 +18,12 @@ MAPPR exposes three utility functions.
 var mappr = require('mappr');
 var createMapper = mappr.createMapper;
 var composeMappers = mappr.composeMappers;
-var format = mappr.format;
 ```
 
 **ES2015**
 
 ```javascript
-import { createMapper, composeMappers, format } from 'mappr';
+import { createMapper, composeMappers } from 'mappr';
 ```
 
 ### createMapper
