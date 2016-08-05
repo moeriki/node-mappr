@@ -1,14 +1,10 @@
-# MAPPR
+# mappr
 
-MAPPR is a tiny JavaScript utility to assist with object to object mapping.
-
-**Advantages**
-
-* pure functions = testable to the bone
+mappr is a tiny JavaScript utility to assist with object to object mapping.
 
 ## Usage
 
-MAPPR exposes three utility functions.
+mappr exposes two utility functions.
 
 **ES5**
 
@@ -175,7 +171,7 @@ const user = mapUser({ firstName: 'Jane', lastName: 'Doe' });
 
 **Custom getters and FP**
 
-Allowing the usage of custom getter functions makes an FP library such as [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) a great *(read: essential)* addition to MAPPR.
+Allowing the usage of custom getter functions makes an FP library such as [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) a great *(read: essential)* addition to mappr.
 
 ```javascript
 var _ = require('lodash/fp');
