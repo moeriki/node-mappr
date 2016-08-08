@@ -1,139 +1,131 @@
 # mappr
 
-mappr is a tiny JavaScript utility to assist with object to object mapping.
+`mappr` is a tiny JavaScript utility to assist with object to object mapping.
 
 ## Usage
 
-mappr exposes two utility functions.
-
-**ES5**
+`mappr` is exposed as a function.
 
 ```javascript
 var mappr = require('mappr');
-var createMapper = mappr.createMapper;
-var composeMappers = mappr.composeMappers;
+
+mappr( … );
 ```
 
-**ES2015**
+## Basics
+
+```
+mappr(...string|object|function):function
+```
+
+Create a mapper function by invoking `mappr` with one or more arguments. Mappers can be strings, objects, or functions.
+
+**Strings**
 
 ```javascript
-import { createMapper, composeMappers } from 'mappr';
+var getName = mappr('user.name');
+
+var name = getName({ user: { name: 'Jane' } });
+
+// name = 'Jane'
 ```
 
-### createMapper
+String mappers are created by passing a string to `mappr`. This creates a mapper function that will retrieve nested JSON data using the provided string.
 
-```
-createMapper(mapper:string|object|function, ...formatters:function):function
-```
+*Note:  uses [lodash.get](https://lodash.com/docs#get) internally*
 
-`createMapper` allows you to create a mapper function based on a mapper object.
-
-**String getters**
-
-In its most basic usage a mapper object lists its destination keys (`name`, `familyName`) as properties accompanied by string getters (`'firstName'`, `'lastName'`).
+**Objects**
 
 ```javascript
-var mapUser = createMapper({
-  name: 'firstName',
-  familyName: 'lastName'
+var getUser = mappr({
+    name: 'data.firstName'
 });
 
-var user = mapUser({
-  firstName: 'Jane',
-  lastName: 'Doe'
-});
+var user = getUser({ data: { firstName: 'Jane' } });
 
-// user = {
-//   name: 'Jane',
-//   familyName: 'Doe'
-// }
+// user = { name: 'Jane' }
 ```
 
-You can easily map from and to nested properties.
+An object mapper is created by passing an object into `mappr`. This creates a mapper function that will construct a JSON object. The object keys will be used as-is, the values will be parsed recursively by `mappr`.
+
+This means the following two examples are exactly the same in execution.
 
 ```javascript
-var mapUser = createMapper({
-  username: {
-    name: 'user.name.first'
-  }
+var getUser = mappr({
+    name: 'user.firstName'
+});
+```
+
+```javascript
+var getUser = mappr({
+    name: mappr('user.firstName')
+});
+```
+
+This is just FYI. You'll never have to write the latter.
+
+**Functions**
+
+Lastly a function mapper create a function, that executes a function.
+
+```javascript
+var getUserName = mappr(function (name) {
+  return name.firstName + ' ' + name.lastName;
 });
 
-var user = mapUser({
-  user: {
-    name: {
-      first: 'Jane'
+var username = getUserName({
+    firstName: 'Jane',
+    lastName: 'Doe'
+});
+
+// username = 'Jane Doe'
+```
+
+By itself not very useful. Its power stems from composing it with other mappers.
+
+### Advanced
+
+**Chaining**
+
+`mappr` takes one or more arguments. When more arguments are provided the results are chained. The output of the preceding function is provided as the input of the following function.
+
+```javascript
+var getUsername = mappr(
+    'user.name',
+    function trim(userName) {
+        return userName.trim();
     },
-  }
-});
+    function toUpper(userName) {
+        return userName.toUpperCase();
+    }
+)
 
-// user = {
-//   username: {
-//     name: 'Jane'
-//   }
-// }
+var username = getUsername({ user: { name: '  Jane  ' } });
+
+// username = 'JANE'
 ```
 
-*Note: getting a nested property from the source object uses [lodash.get](https://lodash.com/docs#get) internally.*
+**Composing**
 
-**Custom getters**
+```
+mappr.compose(...string|object|function):function
+```
 
-In the above examples we used string getters to map values one-on-one from a source property to a destination property.
-
-If you need more flexibility for your destination value you can use a custom getter; a function that receives one argument, namely the source object.
+`compose` allows you to combine multiple mappers together and merge their results into one object.
 
 ```javascript
-var mapPerson = createMapper({
-  name: function (src) {
-    return src.firstName + ' ' + src.lastName;
-  }
-});
-
-var result = mapPerson({
-  firstName: 'Jane',
-  lastName: 'Doe',
-});
-
-// result = {
-//   name: 'Jane Doe',
-// }
-```
-
-**Additional formatting**
-
-`createMapper` accepts additional functions as rest parameters. Use this to format the output of your mapper.
-
-```javascript
-var user = { name: 'John H. Benjamin' };
-var mapName = createMapper(
-  'name',
-  function (name) { return name.toUpperCase(); },
-  function (name) { return name.split('').reverse().join(''); },
-);
-var name = mapName(user);
-// name = 'NIMAJNEB .H NHOJ'
-```
-
-### composeMappers
-
-```
-composeMappers(...mapper:object):function
-```
-
-`composeMappers` allows you to combine multiple mappers together and merge their result into one object.
-
-```javascript
-var mapName = createMapper({
+var mapName = mappr({
   name: 'user.firstName',
   familyName: 'user.lastName',
 });
 
-var mapAddress = createMapper({
+var mapAddress = mappr({
   address: function (src) {
     return src.user.street + ' ' + src.user.streetNumber;
   }
 });
 
-var mapUser = composeMappers(mapName, mapAddress);
+var mapUser = compose(mapName, mapAddress);
 
 var user = mapUser({
   user: {
@@ -151,38 +143,17 @@ var user = mapUser({
 // }
 ```
 
-## Advanced usage
+**Lodash FP**
 
-**ES2015**
-
-It *almost* goes without saying ES2015 makes everything nicer.
-
-```javascript
-const mapper = createMapper({
-  name: (src) => `${src.firstName} ${src.lastName}`
-});
-
-const user = mapUser({ firstName: 'Jane', lastName: 'Doe' });
-
-// user = {
-//   name: 'Jane Doe'
-// }
-```
-
-**Custom getters and FP**
-
-Allowing the usage of custom getter functions makes an FP library such as [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) a great *(read: essential)* addition to mappr.
+`mappr` is meant to be a companion piece to [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide). Or is it the other way around?
 
 ```javascript
 var _ = require('lodash/fp');
 
-var mapUser = composeMappers(
+var mapUser = mappr.compose(
   _.pick(['firstName', 'lastName']),
   {
-    articles: _.flow([
-      _.get('posts'),
-      _.map(_.pick(['title', 'upvoteCount'])),
-    ])
+    articles: mappr('posts', _.map(_.omit(['id']))),
   }
 );
 
@@ -206,6 +177,27 @@ var user = mapUser({
 // }
 ```
 
+**ES2015**
+
+It *almost* goes without saying ES2015 makes everything nicer.
+
+```javascript
+const mapper = mappr({
+  name: (src) => `${src.firstName} ${src.lastName}`
+});
+
+const user = mapUser({
+    firstName: 'Jane',
+    lastName: 'Doe'
+});
+
+// user = {
+//   name: 'Jane Doe'
+// }
+```
+
+## Examples
+
 **Mapping arrays to arrays**
 
 `// TODO` `lodash-fp/map`
@@ -221,4 +213,4 @@ var user = mapUser({
 ## TODO
 
 * better, more varied examples
-* map data conditionally
+* write Medium article because it's 2016

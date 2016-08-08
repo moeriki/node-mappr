@@ -4,7 +4,7 @@ import test from 'ava';
 
 // modules
 
-import { composeMappers } from '../src';
+import { compose } from '../src';
 
 // fixture
 
@@ -24,7 +24,7 @@ let mapper, result;
 
 test('should merge mapper results into one object', (t) => {
   // setup
-  mapper = composeMappers(
+  mapper = compose(
     { name: ({ firstName, lastName }) => `${firstName} ${lastName}` },
     { address: ({ city, street, streetNumber }) => `${street} ${streetNumber}, ${city}` },
   );

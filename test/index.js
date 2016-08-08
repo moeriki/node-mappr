@@ -4,7 +4,7 @@ import test from 'ava';
 
 // modules
 
-import { createMapper } from '../src';
+import mappr from '../src'; // eslint-disable-line import/no-named-as-default
 
 // fixture
 
@@ -23,7 +23,7 @@ const pojo = {
 
 function setupAndTest() {
   // setup
-  const mapper = createMapper({
+  const mapper = mappr({
     gender: 'gender',
     name: {
       first: 'firstName',
@@ -71,7 +71,7 @@ test('should map using custom mapper', (t) => {
 
 test('should throw if mapper is no function|object|string', (t) => {
   // setup
-  const mapper = createMapper({ key: true });
+  const mapper = mappr({ key: true });
   // true is not a valid mapper
   t.throws(() => mapper({}));
 });
@@ -79,7 +79,7 @@ test('should throw if mapper is no function|object|string', (t) => {
 test('should apply multiple formatters', (t) => {
   // setup
   const user = { name: 'John H. Benjamin' };
-  const mapper = createMapper(
+  const mapper = mappr(
     'name',
     (name) => name.toUpperCase(),
     (name) => name.split('').reverse().join(''),

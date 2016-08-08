@@ -3,21 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.composeMappers = exports.createMapper = undefined;
+exports.compose = exports.mappr = undefined;
 
 var _utils = require('./utils');
 
 // private functions
 
 var applyMapper = function applyMapper(mapper) {
-  return function (pojo) {
+  return function (primitive) {
     if (typeof mapper === 'string') {
-      return (0, _utils.get)(pojo, mapper);
+      return (0, _utils.get)(primitive, mapper);
     } else if (typeof mapper === 'function') {
-      return mapper(pojo);
+      return mapper(primitive);
     } else if ((0, _utils.isPlainObject)(mapper)) {
       return (0, _utils.mapValues)(mapper, function (nestedMapper) {
-        return applyMapper(nestedMapper)(pojo);
+        return applyMapper(nestedMapper)(primitive);
       });
     }
     throw new TypeError('cannot apply mapper \'' + mapper + '\', need function|object|string');
@@ -28,18 +28,15 @@ var applyMapper = function applyMapper(mapper) {
 
 // modules
 
-var createMapper = exports.createMapper = function createMapper(mapper) {
-  for (var _len = arguments.length, formatters = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    formatters[_key - 1] = arguments[_key];
+var mappr = function mappr() {
+  for (var _len = arguments.length, mappers = Array(_len), _key = 0; _key < _len; _key++) {
+    mappers[_key] = arguments[_key];
   }
 
-  if (formatters.length === 0) {
-    return applyMapper(mapper);
-  }
-  return _utils.flow.apply(undefined, [applyMapper(mapper)].concat(formatters));
+  return (0, _utils.flow)(mappers.map(applyMapper));
 };
 
-var composeMappers = exports.composeMappers = function composeMappers() {
+var compose = function compose() {
   for (var _len2 = arguments.length, mappers = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
     mappers[_key2] = arguments[_key2];
   }
@@ -50,3 +47,9 @@ var composeMappers = exports.composeMappers = function composeMappers() {
     }, {});
   };
 };
+
+mappr.compose = compose;
+
+exports.mappr = mappr;
+exports.compose = compose;
+exports.default = mappr;

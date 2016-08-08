@@ -4,31 +4,30 @@ import { flow, get, isPlainObject, mapValues } from './utils';
 
 // private functions
 
-const applyMapper = (mapper) => (pojo) => {
+const applyMapper = (mapper) => (primitive) => {
   if (typeof mapper === 'string') {
-    return get(pojo, mapper);
+    return get(primitive, mapper);
   } else if (typeof mapper === 'function') {
-    return mapper(pojo);
+    return mapper(primitive);
   } else if (isPlainObject(mapper)) {
-    return mapValues(mapper, (nestedMapper) => applyMapper(nestedMapper)(pojo));
+    return mapValues(mapper, (nestedMapper) => applyMapper(nestedMapper)(primitive));
   }
   throw new TypeError(`cannot apply mapper '${mapper}', need function|object|string`);
 };
 
 // exports
 
-export const createMapper = (mapper, ...formatters) => {
-  if (formatters.length === 0) {
-    return applyMapper(mapper);
-  }
-  return flow(
-    applyMapper(mapper),
-    ...formatters,
-  );
-};
+const mappr = (...mappers) =>
+  flow(mappers.map(applyMapper));
 
-export const composeMappers = (...mappers) => (pojo) =>
+const compose = (...mappers) => (pojo) =>
   mappers.reduce(
     (result, mapper) => Object.assign(result, applyMapper(mapper)(pojo)),
     {}
   );
+
+mappr.compose = compose;
+
+export { mappr, compose };
+
+export default mappr;
