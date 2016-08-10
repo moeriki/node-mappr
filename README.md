@@ -135,7 +135,7 @@ var mapAddress = mappr({
   }
 });
 
-var mapUser = compose(mapName, mapAddress);
+var mapUser = mappr.compose(mapName, mapAddress);
 
 var user = mapUser({
   user: {
