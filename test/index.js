@@ -38,7 +38,7 @@ function setupAndTest() {
 
 // tests
 
-test('map root level property', (t) => {
+test('should map root level property', (t) => {
   // setup & test
   const result = setupAndTest();
   // verify
