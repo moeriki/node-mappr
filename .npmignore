@@ -1,6 +1,7 @@
 .babelrc
 .eslintrc.js
 .gitignore
+.npmignore
 .nyc_output
 coverage
 node_modules
