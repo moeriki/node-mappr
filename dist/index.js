@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.compose = exports.mappr = undefined;
+exports.compose = undefined;
 
 var _utils = require('./utils');
 
@@ -50,6 +50,5 @@ var compose = function compose() {
 
 mappr.compose = compose;
 
-exports.mappr = mappr;
-exports.compose = compose;
 exports.default = mappr;
+exports.compose = compose;

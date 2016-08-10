@@ -10,6 +10,16 @@
 var mappr = require('mappr');
 
 mappr( … );
+mappr.compose( … );
+```
+
+**ES Module**
+
+```javascript
+import mappr, { compose } from 'mappr';
+
+mappr( … );
+compose( … ); // or mappr.compose
 ```
 
 ## Basics
