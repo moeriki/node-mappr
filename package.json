@@ -9,7 +9,8 @@
     "test": "ava",
     "test:coverage": "nyc ava",
     "test:coverage:html": "nyc ava report --reporter=html",
-    "build": "BABEL_ENV=production babel src/ --out-dir dist/"
+    "build": "BABEL_ENV=production babel src/ --out-dir dist/",
+    "preversion": "npm run build && npm run test:coverage && git add -A dist/"
   },
   "keywords": [
     "mapper",
