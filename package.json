@@ -1,6 +1,6 @@
 {
   "name": "mappr",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "JavaScript pojo to pojo mapper",
   "repository": "git@github.com:Moeriki/mappr.git",
   "main": "index.js",
