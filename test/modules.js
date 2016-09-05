@@ -9,7 +9,7 @@ var test = require('ava');
 // modules
 
 var mapprCommonJS = require('../index');
-var mapprES = require('../src');
+var mapprES = require('../lib');
 
 // tests
 
@@ -21,5 +21,4 @@ test('should import ES module', (t) => {
 test('should import CommonJS module', (t) => {
   t.is(typeof mapprES.default, 'function');
   t.is(typeof mapprES.default.compose, 'function');
-  t.is(typeof mapprES.compose, 'function');
 });

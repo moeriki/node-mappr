@@ -2,6 +2,19 @@
 
 `mappr` is a tiny JavaScript utility to assist with object to object mapping.
 
+* [Usage](#usage)
+* [Basics](#basics)
+    * [Strings](#strings)
+    * [Objects](#objects)
+    * [Functions](#functions)
+* [Advanced](#advanced)
+    * [Chaining](#chaining)
+    * [Composing](#composing)
+    * [Lodash FP](#lodash-fp)
+* [Examples](#examples)
+* [TODO](#todo)
+
+<a name="usage"></a>
 ## Usage
 
 `mappr` is exposed as a function.
@@ -16,12 +29,13 @@ mappr.compose( … );
 **ES Module**
 
 ```javascript
-import mappr, { compose } from 'mappr';
+import mappr from 'mappr/es';
 
 mappr( … );
-compose( … ); // or mappr.compose
+mappr.compose( … );
 ```
 
+<a name="basics"></a>
 ## Basics
 
 ```
@@ -30,7 +44,7 @@ mappr(...string|object|function):function
 
 Create a mapper function by invoking `mappr` with one or more arguments. Mappers can be strings, objects, or functions.
 
-**Strings**
+<a name="strings">**Strings**</a>
 
 ```javascript
 var getName = mappr('user.name');
@@ -42,9 +56,9 @@ var name = getName({ user: { name: 'Jane' } });
 
 String mappers are created by passing a string to `mappr`. This creates a mapper function that will retrieve nested JSON data using the provided string.
 
-*Note:  uses [lodash.get](https://lodash.com/docs#get) internally*
+*Note:  uses [lodash.get][1] internally*
 
-**Objects**
+<a name="#objects">**Objects**</a>
 
 ```javascript
 var getUser = mappr({
@@ -74,7 +88,7 @@ var getUser = mappr({
 
 This is just FYI. You'll never have to write the latter.
 
-**Functions**
+<a name="#functions">**Functions**</a>
 
 Lastly a function mapper create a function, that executes a function.
 
@@ -93,9 +107,10 @@ var username = getUserName({
 
 By itself not very useful. Its power stems from composing it with other mappers.
 
-### Advanced
+<a name="advanced"></a>
+## Advanced
 
-**Chaining**
+<a name="chaining">**Chaining**</a>
 
 `mappr` takes one or more arguments. When more arguments are provided the results are chained. The output of the preceding function is provided as the input of the following function.
 
@@ -115,7 +130,7 @@ var username = getUsername({ user: { name: '  Jane  ' } });
 // username = 'JANE'
 ```
 
-**Composing**
+<a name="composing">**Composing**</a>
 
 ```
 mappr.compose(...string|object|function):function
@@ -153,9 +168,9 @@ var user = mapUser({
 // }
 ```
 
-**Lodash FP**
+<a name="lodash-fp">**Lodash FP**</a>
 
-`mappr` is meant to be a companion piece to [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide). Or is it the other way around?
+`mappr` is meant to be a companion piece to [lodash/fp][2]. Or is it the other way around?
 
 ```javascript
 var _ = require('lodash/fp');
@@ -206,6 +221,7 @@ const user = mapUser({
 // }
 ```
 
+<a name="examples"></a>
 ## Examples
 
 **Mapping arrays to arrays**
@@ -220,7 +236,11 @@ const user = mapUser({
 
 `// TODO` `lodash-fp/reduce`, `lodash-fp/map`, `lodash-fm/mapValues` probably?
 
+<a name="todo"></a>
 ## TODO
 
 * better, more varied examples
 * write Medium article because it's 2016
+
+[1]:	https://lodash.com/docs#get
+[2]:	https://github.com/lodash/lodash/wiki/FP-Guide

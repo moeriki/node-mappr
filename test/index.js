@@ -4,7 +4,7 @@ import test from 'ava';
 
 // modules
 
-import mappr from '../src'; // eslint-disable-line import/no-named-as-default
+import mappr from '../lib';
 
 // fixture
 
@@ -31,6 +31,7 @@ function setupAndTest() {
     },
     city: 'address.city',
     address: { street: (_pojo) => `${_pojo.address.street} ${_pojo.address.streetNumber}` },
+    country: 'country,'
   });
   // test
   return mapper(pojo);
@@ -43,6 +44,14 @@ test('should map root level property', (t) => {
   const result = setupAndTest();
   // verify
   t.is(result.gender, 'male');
+});
+
+test('should not map undefined', (t) => {
+  // setup & test
+  const result = setupAndTest();
+  // verify
+  t.is(result.country, undefined);
+  t.is('country' in result, false);
 });
 
 test('should map root level property to nested property', (t) => {

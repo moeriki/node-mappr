@@ -3,53 +3,53 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.compose = exports.mappr = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); // modules
+
+var _core = require('./core');
+
+var _core2 = _interopRequireDefault(_core);
+
+var _plugins = require('./plugins');
+
+var plugins = _interopRequireWildcard(_plugins);
 
 var _utils = require('./utils');
 
-// private functions
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var applyMapper = function applyMapper(mapper) {
-  return function (primitive) {
-    if (typeof mapper === 'string') {
-      return (0, _utils.get)(primitive, mapper);
-    } else if (typeof mapper === 'function') {
-      return mapper(primitive);
-    } else if ((0, _utils.isPlainObject)(mapper)) {
-      return (0, _utils.mapValues)(mapper, function (nestedMapper) {
-        return applyMapper(nestedMapper)(primitive);
-      });
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// load plugins
+
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = (0, _utils.toPairs)(plugins)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var _step$value = _slicedToArray(_step.value, 2);
+
+    var pluginName = _step$value[0];
+    var plugin = _step$value[1];
+
+    _core2.default.load(pluginName, plugin);
+  }
+
+  // exports
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return) {
+      _iterator.return();
     }
-    throw new TypeError('cannot apply mapper \'' + mapper + '\', need function|object|string');
-  };
-};
-
-// exports
-
-// modules
-
-var mappr = function mappr() {
-  for (var _len = arguments.length, mappers = Array(_len), _key = 0; _key < _len; _key++) {
-    mappers[_key] = arguments[_key];
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
   }
+}
 
-  return (0, _utils.flow)(mappers.map(applyMapper));
-};
-
-var compose = function compose() {
-  for (var _len2 = arguments.length, mappers = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    mappers[_key2] = arguments[_key2];
-  }
-
-  return function (pojo) {
-    return mappers.reduce(function (result, mapper) {
-      return Object.assign(result, applyMapper(mapper)(pojo));
-    }, {});
-  };
-};
-
-mappr.compose = compose;
-
-exports.mappr = mappr;
-exports.compose = compose;
-exports.default = mappr;
+exports.default = _core2.default;

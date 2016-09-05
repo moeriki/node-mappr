@@ -2,14 +2,15 @@
   "name": "mappr",
   "version": "2.0.1",
   "description": "JavaScript pojo to pojo mapper",
+  "repository": "git@github.com:Moeriki/mappr.git",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js src/ test/",
+    "lint": "eslint *.js lib/ test/",
     "pretest": "npm run lint",
     "test": "ava",
     "test:coverage": "nyc ava",
     "test:coverage:html": "nyc ava report --reporter=html",
-    "build": "BABEL_ENV=production babel src/ --out-dir dist/",
+    "build": "BABEL_ENV=production babel lib/ --out-dir dist/",
     "preversion": "npm run build && npm run test:coverage && git add -A dist/"
   },
   "keywords": [
@@ -23,7 +24,9 @@
     "lodash.flow": "^3.4.0",
     "lodash.get": "^4.4.1",
     "lodash.isplainobject": "^4.0.5",
-    "lodash.mapvalues": "^4.5.1"
+    "lodash.mapvalues": "^4.5.1",
+    "lodash.omitby": "^4.6.0",
+    "lodash.topairs": "^4.3.0"
   },
   "devDependencies": {
     "ava": "^0.15.2",
@@ -41,7 +44,8 @@
   "ava": {
     "require": [
       "babel-core/register"
-    ]
+    ],
+    "verbose": true
   },
   "nyc": {
     "exclude": [

@@ -4,7 +4,7 @@ import test from 'ava';
 
 // modules
 
-import { compose } from '../src';
+import mappr from '../../lib';
 
 // fixture
 
@@ -24,7 +24,7 @@ let mapper, result;
 
 test('should merge mapper results into one object', (t) => {
   // setup
-  mapper = compose(
+  mapper = mappr.compose(
     { name: ({ firstName, lastName }) => `${firstName} ${lastName}` },
     { address: ({ city, street, streetNumber }) => `${street} ${streetNumber}, ${city}` },
   );
@@ -33,4 +33,16 @@ test('should merge mapper results into one object', (t) => {
   // verify
   t.is(result.name, 'Dieter Luypaert');
   t.is(result.address, 'Rue Mode Vliebergh 18, Laken');
+});
+
+test('should not merge undefined', (t) => {
+  // setup
+  mapper = mappr.compose(
+    { city: 'city' },
+    { address: () => undefined },
+  );
+  // test
+  result = mapper(pojo);
+  // verify
+  t.deepEqual(result, { city: 'Laken' });
 });
