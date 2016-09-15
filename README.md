@@ -2,6 +2,10 @@
 
 `mappr` is a tiny JavaScript utility to assist with object to object mapping.
 
+[![Build Status](https://travis-ci.org/Moeriki/mappr.svg?branch=master)](https://travis-ci.org/Moeriki/mappr)
+
+---
+
 * [Usage](#usage)
 * [Basics](#basics)
     * [Strings](#strings)
