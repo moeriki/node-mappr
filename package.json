@@ -13,7 +13,7 @@
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "build": "BABEL_ENV=production babel lib/ --ignore test.js --out-dir dist/",
-    "preversion": "npm run build && npm run test:coverage && git add -A dist/"
+    "preversion": "npm run build && npm run test && git add -A dist/"
   },
   "keywords": [
     "mapper",
