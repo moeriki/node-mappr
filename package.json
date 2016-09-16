@@ -1,6 +1,6 @@
 {
   "name": "mappr",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "JavaScript pojo to pojo mapper",
   "repository": {
     "type": "git",
