@@ -2,7 +2,7 @@
 
 `mappr` is a tiny JavaScript utility to assist with object to object mapping.
 
-[![Build Status](https://travis-ci.org/Moeriki/mappr.svg?branch=master)](https://travis-ci.org/Moeriki/mappr) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/mappr/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/mappr?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/mappr/badge.svg)](https://snyk.io/test/github/moeriki/mappr)
+[![Build Status](https://travis-ci.org/Moeriki/mappr.svg?branch=master)](https://travis-ci.org/Moeriki/mappr) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/mappr/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/mappr?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/mappr/badge.svg)](https://snyk.io/test/github/moeriki/mappr) [![dependencies Status](https://david-dm.org/moeriki/mappr/status.svg)](https://david-dm.org/moeriki/mappr)
 
 ---
 
