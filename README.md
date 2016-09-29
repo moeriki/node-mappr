@@ -15,8 +15,6 @@
     * [Chaining](#chaining)
     * [Composing](#composing)
     * [Lodash FP](#lodash-fp)
-* [Examples](#examples)
-* [TODO](#todo)
 
 <a name="usage"></a>
 ## Usage
@@ -224,27 +222,6 @@ const user = mapUser({
 //   name: 'Jane Doe'
 // }
 ```
-
-<a name="examples"></a>
-## Examples
-
-**Mapping arrays to arrays**
-
-`// TODO` `lodash-fp/map`
-
-**Mapping arrays to objects**
-
-`// TODO` `lodash-fp/reduce` probably?
-
-**Mapping objects to arrays**
-
-`// TODO` `lodash-fp/reduce`, `lodash-fp/map`, `lodash-fm/mapValues` probably?
-
-<a name="todo"></a>
-## TODO
-
-* better, more varied examples
-* write Medium article because it's 2016
 
 [1]:	https://lodash.com/docs#get
 [2]:	https://github.com/lodash/lodash/wiki/FP-Guide
