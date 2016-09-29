@@ -114,7 +114,7 @@ By itself not very useful. Its power stems from composing it with other mappers.
 
 <a name="chaining">**Chaining**</a>
 
-`mappr` takes one or more arguments. When more arguments are provided the results are chained. The output of the preceding function is provided as the input of the following function.
+`mappr` takes one or more arguments. When more arguments are provided the results are chained. The output of the preceding function is provided as the input of the proceding function.
 
 ```javascript
 var getUsername = mappr(
@@ -206,7 +206,7 @@ var user = mapUser({
 
 **ES2015**
 
-It *almost* goes without saying ES2015 makes everything nicer.
+ES2015 makes everything nicer.
 
 ```javascript
 const mapper = mappr({
