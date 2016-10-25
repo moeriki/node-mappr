@@ -28,10 +28,9 @@ var _iteratorError = undefined;
 
 try {
   for (var _iterator = (0, _utils.toPairs)(plugins)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    var _step$value = _slicedToArray(_step.value, 2);
-
-    var pluginName = _step$value[0];
-    var plugin = _step$value[1];
+    var _step$value = _slicedToArray(_step.value, 2),
+        pluginName = _step$value[0],
+        plugin = _step$value[1];
 
     _core2.default.load(pluginName, plugin);
   }
