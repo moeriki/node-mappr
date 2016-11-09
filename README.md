@@ -2,10 +2,11 @@
 
 `mappr` is a tiny JavaScript utility to assist with Functional object mapping.
 
-[![Build Status](https://travis-ci.org/Moeriki/mappr.svg?branch=master)](https://travis-ci.org/Moeriki/mappr) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/mappr/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/mappr?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/mappr/badge.svg)](https://snyk.io/test/github/moeriki/mappr) [![dependencies Status](https://david-dm.org/moeriki/mappr/status.svg)](https://david-dm.org/moeriki/mappr) [![Downloads](http://img.shields.io/npm/dm/mappr.svg?style=flat)](https://www.npmjs.org/package/mappr)
+[![Build Status](https://travis-ci.org/Moeriki/node-mappr.svg?branch=master)](https://travis-ci.org/Moeriki/node-mappr) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/node-mappr/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/node-mappr?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/node-mappr/badge.svg)](https://snyk.io/test/github/moeriki/node-mappr) [![dependencies Status](https://david-dm.org/moeriki/node-mappr/status.svg)](https://david-dm.org/moeriki/node-mappr) [![Downloads](http://img.shields.io/npm/dm/node-mappr.svg?style=flat)](https://www.npmjs.org/package/mappr)
 
 ---
 
+* [Install](#install)
 * [Why?](#why)
 * [Usage](#usage)
 * [Basics](#basics)
@@ -17,12 +18,19 @@
     * [Composing](#composing)
     * [Combining](#combining)
 
+<a name="install"></a>
+## Install
+
+```sh
+npm install --save mappr
+```
+
 <a name="why"></a>
 ## Why?
 
 By following principles of functional programming, your code contains less bugs, and is more easily testable. The two important pillars here are [immutability](https://wikipedia.org/wiki/Special:Search/immutability) and [pure functions](https://en.wikipedia.org/wiki/Pure_function).
 
-Object mapping is a frequent, often badly implemented, problem in coding. Different APIs use different data structures etc... 
+Object mapping is a frequent, often badly implemented, problem in coding. Different APIs use different data structures etc...
 
 `mappr` will help you write good functional data mapping functions.
 
