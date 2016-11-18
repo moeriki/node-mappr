@@ -4,7 +4,7 @@
   "description": "JavaScript pojo to pojo mapper",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Moeriki/millis.git"
+    "url": "git@github.com:Moeriki/node-millis.git"
   },
   "main": "index.js",
   "scripts": {
