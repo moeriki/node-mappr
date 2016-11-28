@@ -1,11 +1,16 @@
 {
   "name": "mappr",
   "version": "3.1.0",
-  "description": "JavaScript pojo to pojo mapper",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Moeriki/node-millis.git"
-  },
+  "description": "JavaScript object to object mapper",
+  "keywords": [
+    "functional",
+    "mapper",
+    "object",
+    "pojo"
+  ],
+  "author": "Dieter Luypaert <dieterluypaert@gmail.com>",
+  "license": "MIT",
+  "repository": "git@github.com:Moeriki/node-millis.git",
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js lib/",
@@ -15,13 +20,6 @@
     "build": "BABEL_ENV=production babel lib/ --ignore test.js --out-dir dist/",
     "preversion": "npm run build && npm run test && git add -A dist/"
   },
-  "keywords": [
-    "mapper",
-    "object",
-    "pojo"
-  ],
-  "author": "Dieter Luypaert",
-  "license": "MIT",
   "dependencies": {
     "lodash.flow": "3.5.0",
     "lodash.get": "4.4.2",
