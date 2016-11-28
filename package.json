@@ -28,6 +28,7 @@
     "lodash.isplainobject": "4.0.6",
     "lodash.mapvalues": "4.6.0",
     "lodash.omitby": "4.6.0",
+    "lodash.set": "4.3.2",
     "lodash.topairs": "4.3.0"
   },
   "devDependencies": {
