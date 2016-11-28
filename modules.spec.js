@@ -4,8 +4,9 @@
 
 // modules
 
-var mapprCommonJS = require('./index');
 var mapprES = require('./es');
+
+var mapprCommonJS = require('./index');
 
 // tests
 

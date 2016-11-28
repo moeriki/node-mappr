@@ -2,7 +2,7 @@
 
 // modules
 
-import mappr from './index';
+import mappr from '../lib';
 
 // tests
 

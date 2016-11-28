@@ -27,15 +27,15 @@ const pojo = {
 function setupAndTest() {
   // setup
   const mapper = mappr({
-    gender: 'gender',
-    name: {
+    'gender': 'gender',
+    'name': {
       first: 'firstName',
       last: 'lastName',
     },
     'name.middle': 'middleName',
-    city: 'address.city',
-    address: { street: (_pojo) => `${_pojo.address.street} ${_pojo.address.streetNumber}` },
-    country: 'country,',
+    'city': 'address.city',
+    'address': { street: (_pojo) => `${_pojo.address.street} ${_pojo.address.streetNumber}` },
+    'country': 'country,',
   });
   // test
   return mapper(pojo);
