@@ -8,15 +8,17 @@ var _utils = require('./utils');
 
 // private functions
 
+var mapPOJO = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys); // modules
+
 var applyMapper = function applyMapper(mapper) {
-  return function (primitive) {
+  return function (source) {
     if (typeof mapper === 'string') {
-      return (0, _utils.get)(primitive, mapper);
+      return (0, _utils.get)(source, mapper);
     } else if (typeof mapper === 'function') {
-      return mapper(primitive);
+      return mapper(source);
     } else if ((0, _utils.isPlainObject)(mapper)) {
-      return (0, _utils.omitByUndefined)((0, _utils.mapValues)(mapper, function (nestedMapper) {
-        return applyMapper(nestedMapper)(primitive);
+      return mapPOJO((0, _utils.mapValues)(mapper, function (nestedMapper) {
+        return applyMapper(nestedMapper)(source);
       }));
     }
     throw new TypeError('cannot apply mapper \'' + mapper + '\', need function|object|string');
@@ -24,8 +26,6 @@ var applyMapper = function applyMapper(mapper) {
 };
 
 // exports
-
-// modules
 
 var mappr = function mappr() {
   for (var _len = arguments.length, mappers = Array(_len), _key = 0; _key < _len; _key++) {
