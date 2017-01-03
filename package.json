@@ -13,37 +13,13 @@
   "repository": "git@github.com:Moeriki/node-millis.git",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js lib/",
-    "pretest": "npm run lint",
+    "lint": "eslint *.js lib/ test/",
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "build": "BABEL_ENV=production babel lib/ --ignore test.js --out-dir dist/",
-    "preversion": "npm run build && npm run test && git add -A dist/"
-  },
-  "dependencies": {
-    "lodash.flow": "3.5.0",
-    "lodash.get": "4.4.2",
-    "lodash.isplainobject": "4.0.6",
-    "lodash.mapvalues": "4.6.0",
-    "lodash.omitby": "4.6.0",
-    "lodash.set": "4.3.2",
-    "lodash.topairs": "4.3.0"
-  },
-  "devDependencies": {
-    "babel-cli": "6.18.0",
-    "babel-core": "6.18.2",
-    "babel-eslint": "7.1.1",
-    "babel-jest": "17.0.2",
-    "babel-preset-es2015": "6.18.0",
-    "babel-preset-stage-2": "6.18.0",
-    "coveralls": "2.11.15",
-    "eslint": "3.10.0",
-    "eslint-config-muriki": "7.0.0",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jasmine": "2.1.0",
-    "eslint-plugin-node": "3.0.4",
-    "jest-cli": "17.0.3",
-    "lodash": "4.17.2"
+    "preversion": "npm run build && npm run test && git add -A dist/",
+    "precommit": "lint-staged",
+    "prepush": "npm test"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -51,5 +27,34 @@
     ],
     "testEnvironment": "node",
     "testRegex": "/test/.*\\.test\\.js$"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "dependencies": {
+    "lodash.get": "^4.4.2",
+    "lodash.isplainobject": "^4.0.6",
+    "lodash.mapvalues": "^4.6.0",
+    "lodash.omitby": "^4.6.0",
+    "lodash.set": "^4.3.2",
+    "lodash.topairs": "^4.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "~6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "~18.0.0",
+    "babel-preset-latest": "~6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "coveralls": "^2.11.15",
+    "eslint": "~3.12.2",
+    "eslint-config-muriki": "~8.0.0",
+    "eslint-plugin-import": "~2.2.0",
+    "eslint-plugin-jasmine": "~2.2.0",
+    "eslint-plugin-node": "~3.0.5",
+    "husky": "^0.12.0",
+    "jest-cli": "~18.1.0",
+    "lint-staged": "~3.2.5",
+    "lodash": "~4.17.4"
   }
 }
