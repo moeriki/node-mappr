@@ -4,11 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; // modules
+
 var _utils = require('./utils');
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 // private functions
 
-var mapPOJO = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys); // modules
+var mapPOJO = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys);
 
 var applyMapper = function applyMapper(mapper) {
   return function (source) {
@@ -21,7 +25,7 @@ var applyMapper = function applyMapper(mapper) {
         return applyMapper(nestedMapper)(source);
       }));
     }
-    throw new TypeError('cannot apply mapper \'' + mapper + '\', need function|object|string');
+    throw new TypeError('cannot apply mapper \'' + mapper + '\', need function|object|string, is ' + (typeof mapper === 'undefined' ? 'undefined' : _typeof(mapper)));
   };
 };
 
@@ -32,7 +36,7 @@ var mappr = function mappr() {
     mappers[_key] = arguments[_key];
   }
 
-  return (0, _utils.flow)(mappers.map(applyMapper));
+  return _utils.flow.apply(undefined, _toConsumableArray(mappers.map(applyMapper)));
 };
 
 mappr.load = function (pluginName, pluginLoader) {
