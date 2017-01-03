@@ -1,8 +1,24 @@
-# mappr
-
-`mappr` is a tiny JavaScript utility to assist with Functional object mapping.
-
-[![Build Status](https://travis-ci.org/Moeriki/node-mappr.svg?branch=master)](https://travis-ci.org/Moeriki/node-mappr) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/node-mappr/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/node-mappr?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/node-mappr/badge.svg)](https://snyk.io/test/github/moeriki/node-mappr) [![dependencies Status](https://david-dm.org/moeriki/node-mappr/status.svg)](https://david-dm.org/moeriki/node-mappr) [![Downloads](http://img.shields.io/npm/dm/node-mappr.svg?style=flat)](https://www.npmjs.org/package/mappr)
+<p align="center">
+  <h3 align="center">mappr</h3>
+  <p align="center">A tiny JavaScript utility to assist with Functional object mapping.<p>
+  <p align="center">
+    <a href="https://www.npmjs.com/package/mappr">
+      <img src="https://img.shields.io/npm/v/mappr.svg" alt="npm version">
+    </a>
+    <a href="https://travis-ci.org/Moeriki/node-mappr">
+      <img src="https://travis-ci.org/Moeriki/node-mappr.svg?branch=master" alt="Build Status"></img>
+    </a>
+    <a href="https://coveralls.io/github/Moeriki/node-mappr?branch=master">
+      <img src="https://coveralls.io/repos/github/Moeriki/node-mappr/badge.svg?branch=master" alt="Coverage Status"></img>
+    </a>
+    <a href="https://david-dm.org/moeriki/node-mappr">
+      <img src="https://david-dm.org/moeriki/node-mappr/status.svg" alt="dependencies Status"></img>
+    </a>
+    <a href="https://snyk.io/test/github/moeriki/node-mappr">
+      <img src="https://snyk.io/test/github/moeriki/node-mappr/badge.svg" alt="Known Vulnerabilities"></img>
+    </a>
+  </p>
+</p>
 
 ---
 
