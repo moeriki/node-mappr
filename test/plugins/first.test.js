@@ -28,17 +28,17 @@ it('should return first truthy value', () => {
   expect(result2).toBe(3);
 });
 
-it('should return null if no mappers', () => {
+it('should return undefined if no mappers', () => {
   const mapper = mappr.first();
-  expect(mapper('test')).toBe(null);
+  expect(mapper('test')).toBe(undefined);
 });
 
-it('should return null if no mapper returned truthy', () => {
+it('should return undefined if no mapper returned truthy', () => {
   const mapper = mappr.first(
     () => null,
     () => false,
     () => 0,
     () => ''
   );
-  expect(mapper('test')).toBe(null);
+  expect(mapper('test')).toBe(undefined);
 });

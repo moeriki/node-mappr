@@ -40,7 +40,7 @@ var first = exports.first = function first(mappr) {
         }
       }
 
-      return null;
+      return undefined;
     };
   };
 };

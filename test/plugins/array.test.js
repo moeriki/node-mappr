@@ -14,10 +14,10 @@ it('should convert non array to array', () => {
   expect(mapper(pojo)).toEqual(['Hello World!']);
 });
 
-it('should default to empty array', () => {
+it('should return undefined if no items', () => {
   const mapper = mappr.array('key1');
   const pojo = {};
-  expect(mapper(pojo)).toEqual([]);
+  expect(mapper(pojo)).toEqual(undefined);
 });
 
 it('should leave array untouched', () => {

@@ -51,7 +51,7 @@ var when = exports.when = function when(mappr) {
         return cases[1](condition);
       }
 
-      return null;
+      return undefined;
     }; // end internalWhen
 
     internalWhen.INTERNAL_WHEN = true;

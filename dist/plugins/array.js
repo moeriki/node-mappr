@@ -15,6 +15,8 @@ var array = exports.array = function array(mappr) {
       mappers[_key] = arguments[_key];
     }
 
-    return mappr.apply(undefined, [mappers.splice(0, 1)[0], (0, _utils.or)([]), _utils.castArray].concat(mappers));
+    return mappr.apply(undefined, [mappers.splice(0, 1)[0], (0, _utils.or)([]), _utils.castArray].concat(mappers, [function (results) {
+      return !results || results.length === 0 ? undefined : results;
+    }]));
   };
 }; // modules
