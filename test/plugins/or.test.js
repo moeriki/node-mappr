@@ -16,7 +16,7 @@ it('should return first truthy value', () => {
     start: 1,
     end: 4,
   };
-  const mapper = mappr.first(
+  const mapper = mappr.or(
     get('duration'),
     flow([pick(['end', 'start']), values, apply(subtract)]),
   );
@@ -29,12 +29,12 @@ it('should return first truthy value', () => {
 });
 
 it('should return undefined if no mappers', () => {
-  const mapper = mappr.first();
+  const mapper = mappr.or();
   expect(mapper('test')).toBe(undefined);
 });
 
 it('should return undefined if no mapper returned truthy', () => {
-  const mapper = mappr.first(
+  const mapper = mappr.or(
     () => null,
     () => false,
     () => 0,
