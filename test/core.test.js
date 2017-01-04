@@ -1,10 +1,8 @@
 /* eslint-env jest */
 
-// vendor modules
+// modules
 
 import { noop } from 'lodash';
-
-// modules
 
 import mappr from '../lib/core';
 
@@ -32,6 +30,11 @@ function setupAndTest() {
       first: 'firstName',
       last: 'lastName',
     },
+    'names': [
+      mappr('firstName', Array.of),
+      'middleName',
+      'lastName',
+    ],
     'name.middle': 'middleName',
     'city': 'address.city',
     'address': { street: (_pojo) => `${_pojo.address.street} ${_pojo.address.streetNumber}` },
@@ -87,7 +90,14 @@ it('should map using custom mapper', () => {
   expect(result.address.street).toBe('Rue Mode Vliebergh 18');
 });
 
-it('should throw if mapper is no function|object|string', () => {
+it('should map and concatenate array', () => {
+  // setup & test
+  const result = setupAndTest();
+  // verify
+  expect(result.names).toEqual(['Dieter', 'moeriki', 'Luypaert']);
+});
+
+it('should throw if mapper is no array|function|object|string', () => {
   // setup
   const mapper = mappr({ key: true }); // true is not a valid mapper
   // test
