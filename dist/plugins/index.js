@@ -28,14 +28,14 @@ Object.keys(_compose).forEach(function (key) {
   });
 });
 
-var _first = require('./first');
+var _or = require('./or');
 
-Object.keys(_first).forEach(function (key) {
+Object.keys(_or).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _first[key];
+      return _or[key];
     }
   });
 });
