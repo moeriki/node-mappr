@@ -3,84 +3,90 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.when = exports.match = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _utils = require('../utils');
+
+// constant
+
+var MATCHER_PROPERTY = 'MAPPR_WHEN_MATCHER';
 
 // private functions
 
-var isFunction = function isFunction(func) {
-  return typeof func === 'function';
+// utils
+
+var isDefaultMatcher = function isDefaultMatcher(func) {
+  return (0, _utils.isFunction)(func) && !func[MATCHER_PROPERTY];
 };
 
-var isDefaultCase = function isDefaultCase(func) {
-  return isFunction(func) && !func.INTERNAL_WHEN;
+var isMatcher = function isMatcher(func) {
+  return (0, _utils.isFunction)(func) && func[MATCHER_PROPERTY];
 };
 
-var isInternalWhen = function isInternalWhen(func) {
-  return isFunction(func) && func.INTERNAL_WHEN;
-};
+function ifWhen(cases, pojo, condition) {
+  if (condition && cases[0]) {
+    return cases[0](pojo);
+  } else if (!condition && cases[1]) {
+    return cases[1](pojo);
+  }
+  return undefined;
+}
+
+function switchWhen(cases, pojo, condition) {
+  var matchResult = void 0;
+
+  cases.filter(isMatcher).find(function (whenMatcher) {
+    return matchResult = whenMatcher(condition, pojo);
+  });
+
+  if (matchResult) {
+    return matchResult;
+  }
+
+  var defaultMatch = cases.find(isDefaultMatcher);
+  if (!defaultMatch) {
+    return matchResult;
+  }
+
+  return defaultMatch(pojo);
+}
 
 // exports
 
-var when = exports.when = function when(mappr) {
-  return function (mapper) {
-    for (var _len = arguments.length, cases = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cases[_key - 1] = arguments[_key];
+var match = exports.match = function match() {
+  return function (matcher) {
+    for (var _len = arguments.length, mappers = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      mappers[_key - 1] = arguments[_key];
     }
 
-    var internalWhen = function internalWhen(pojo, parentCondition) {
-      var currentMapper = mapper;
-      if (parentCondition && typeof mapper !== 'function') {
-        currentMapper = function currentMapper(value) {
-          return parentCondition === value;
-        };
-      }
+    var internalMatch = function internalMatch(condition, pojo) {
+      var conditionResult = typeof matcher === 'function' ? matcher(condition) : matcher === condition;
+      return conditionResult ? _utils.flow.apply(undefined, mappers)(pojo) : undefined;
+    };
 
-      var condition = mappr(currentMapper)(parentCondition || pojo);
+    internalMatch[MATCHER_PROPERTY] = true;
 
-      if (cases.some(isInternalWhen)) {
-        var _ret = function () {
-          // treat as switch case
-          var match = void 0;
+    return internalMatch;
+  };
+};
 
-          cases.filter(isInternalWhen).find(function (internalWhenCase) {
-            match = internalWhenCase(pojo, condition);
-            return match;
-          });
+var when = exports.when = function when(mappr) {
+  return function (mapper) {
+    for (var _len2 = arguments.length, cases = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      cases[_key2 - 1] = arguments[_key2];
+    }
 
-          if (match) {
-            return {
-              v: match
-            };
-          }
+    return function (pojo) {
 
-          var defaultCase = cases.find(isDefaultCase);
-          if (!defaultCase) {
-            return {
-              v: match
-            };
-          }
+      var condition = mappr(mapper)(pojo);
 
-          return {
-            v: defaultCase(pojo)
-          };
-        }();
-
-        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+      if (cases.some(isMatcher)) {
+        // treat as switch statement
+        return switchWhen(cases, pojo, condition);
       }
 
       // treat as if / else statement
-      if (condition && cases[0]) {
-        return cases[0](pojo);
-      } else if (!condition && cases[1]) {
-        return cases[1](pojo);
-      }
-
-      return undefined;
-    }; // end internalWhen
-
-    internalWhen.INTERNAL_WHEN = true;
-
-    return internalWhen;
+      return ifWhen(cases, pojo, condition);
+    };
   };
-};
+}; // end internalWhen

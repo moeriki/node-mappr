@@ -3,7 +3,7 @@
 
 // modules
 
-import { get } from 'lodash/fp';
+import { eq, get } from 'lodash/fp';
 
 import mappr from '../../lib';
 
@@ -30,21 +30,32 @@ describe('if', () => {
     expect(mapper('anything')).toBe(undefined);
   });
 
-});
-
-describe('switch', () => {
-
-  it('should run if case with pojo', () => {
+  it('should pass source to if-else functions', () => {
     const mapper = mappr.when('isToggle', get('key1'), get('key2'));
     expect(mapper({ isToggle: true, key1: 'value1', key2: 'value2' })).toBe('value1');
     expect(mapper({ isToggle: false, key1: 'value1', key2: 'value2' })).toBe('value2');
   });
 
-  it('should run cases with condition result', () => {
+  it('should pass source to nested if functions', () => {
+    const mapper = mappr.when(
+      () => true,
+      mappr.when(
+        (pojo) => pojo.key === 'value',
+        get('key')
+      )
+    );
+    expect(mapper({ key: 'value' })).toBe('value');
+  });
+
+});
+
+describe('switch', () => {
+
+  it('should run matcher flow with condition result', () => {
     const mapper = mappr.when(
       'getKey',
-      mappr.when('ONE', get('key1')),
-      mappr.when('TWO', get('key2')),
+      mappr.match('ONE', get('key1')),
+      mappr.match(eq('TWO'), get('key2')),
       get('key3'),
     );
     expect(mapper({ getKey: 'ONE', key1: 'value1' })).toBe('value1');
@@ -55,7 +66,7 @@ describe('switch', () => {
   it('should return undefined if not match', () => {
     const mapper = mappr.when(
       'getKey',
-      mappr.when('ONE', get('key1')),
+      mappr.match('ONE', get('key1')),
     );
     expect(mapper({})).toBe(undefined);
   });
