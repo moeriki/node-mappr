@@ -10,7 +10,7 @@
   ],
   "author": "Dieter Luypaert <dieterluypaert@gmail.com>",
   "license": "MIT",
-  "repository": "git@github.com:Moeriki/node-millis.git",
+  "repository": "git@github.com:Moeriki/node-mappr.git",
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js lib/ test/",
