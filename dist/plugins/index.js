@@ -10,7 +10,7 @@ Object.keys(_array).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
-    get: function () {
+    get: function get() {
       return _array[key];
     }
   });
@@ -22,7 +22,7 @@ Object.keys(_compose).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
-    get: function () {
+    get: function get() {
       return _compose[key];
     }
   });
@@ -34,7 +34,7 @@ Object.keys(_or).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
-    get: function () {
+    get: function get() {
       return _or[key];
     }
   });
@@ -46,7 +46,7 @@ Object.keys(_when).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
-    get: function () {
+    get: function get() {
       return _when[key];
     }
   });

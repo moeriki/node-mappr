@@ -35,20 +35,44 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // modules
 
-const castArray = value => Array.isArray(value) ? value : [value];
+var castArray = function castArray(value) {
+  return Array.isArray(value) ? value : [value];
+};
 
-const flow = (...funcs) => initialValue => funcs.reduce((value, func) => func(value), initialValue);
+var flow = function flow() {
+  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
 
-const isFunction = func => typeof func === 'function';
+  return function (initialValue) {
+    return funcs.reduce(function (value, func) {
+      return func(value);
+    }, initialValue);
+  };
+};
 
-const omitByUndefined = source => (0, _lodash8.default)(source, value => typeof value === 'undefined');
+var isFunction = function isFunction(func) {
+  return typeof func === 'function';
+};
 
-const or = defaultValue => value => value ? value : defaultValue;
+var omitByUndefined = function omitByUndefined(source) {
+  return (0, _lodash8.default)(source, function (value) {
+    return typeof value === 'undefined';
+  });
+};
 
-const spreadKeys = pojo => Object.keys(pojo).reduce((result, key) => {
-  (0, _lodash10.default)(result, key, pojo[key]);
-  return result;
-}, {});
+var or = function or(defaultValue) {
+  return function (value) {
+    return value ? value : defaultValue;
+  };
+};
+
+var spreadKeys = function spreadKeys(pojo) {
+  return Object.keys(pojo).reduce(function (result, key) {
+    (0, _lodash10.default)(result, key, pojo[key]);
+    return result;
+  }, {});
+};
 
 exports.castArray = castArray;
 exports.flow = flow;
