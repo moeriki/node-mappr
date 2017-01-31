@@ -1,6 +1,6 @@
 {
   "name": "mappr",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "JavaScript object to object mapper",
   "keywords": [
     "functional",
