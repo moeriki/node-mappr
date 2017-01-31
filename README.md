@@ -249,7 +249,7 @@ var user = mapUser({
 ES2015 makes everything nicer.
 
 ```javascript
-const mapper = mappr({
+const mapUser = mappr({
   name: (src) => `${src.firstName} ${src.lastName}`
 });
 
