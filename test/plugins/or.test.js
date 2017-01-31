@@ -33,12 +33,12 @@ it('should return undefined if no mappers', () => {
   expect(mapper('test')).toBe(undefined);
 });
 
-it('should return undefined if no mapper returned truthy', () => {
+it('should return last result if no mapper returned truthy', () => {
   const mapper = mappr.or(
     () => null,
     () => false,
     () => 0,
     () => ''
   );
-  expect(mapper('test')).toBe(undefined);
+  expect(mapper('test')).toBe('');
 });
