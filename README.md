@@ -22,17 +22,17 @@
 
 ---
 
-* [Install](#install)
-* [Why?](#why)
-* [Usage](#usage)
-* [Basics](#basics)
-    * [Strings](#strings)
-    * [Objects](#objects)
-    * [Functions](#functions)
-* [Advanced](#advanced)
-    * [Chaining](#chaining)
-    * [Composing](#composing)
-    * [Combining](#combining)
+*   [Install](#install)
+*   [Why?](#why)
+*   [Usage](#usage)
+*   [Basics](#basics)
+    *   [Strings](#strings)
+    *   [Objects](#objects)
+    *   [Functions](#functions)
+*   [Advanced](#advanced)
+    *   [Chaining](#chaining)
+    *   [Composing](#composing)
+    *   [Combining](#combining)
 
 <a name="install"></a>
 ## Install
@@ -52,9 +52,9 @@ Object mapping is a frequent, often badly implemented, problem in coding. Differ
 
 **Resources**
 
-* [Functional programming](https://en.wikipedia.org/wiki/Functional_programming) (Wikipedia)
-* [Functional programming should be your 1 priority](https://medium.com/@jugoncalves/functional-programming-should-be-your-1-priority-for-2015-47dd4641d6b9#.ak14bl1a8)
-* [Why functional languages?](https://stackoverflow.com/questions/36504/why-functional-languages)
+*   [Functional programming](https://en.wikipedia.org/wiki/Functional_programming) (Wikipedia)
+*   [Functional programming should be your 1 priority](https://medium.com/@jugoncalves/functional-programming-should-be-your-1-priority-for-2015-47dd4641d6b9#.ak14bl1a8)
+*   [Why functional languages?](https://stackoverflow.com/questions/36504/why-functional-languages)
 
 <a name="usage"></a>
 ## Usage
@@ -212,7 +212,7 @@ var user = mapUser({
 
 <a name="combining">**Combining**</a>
 
-`mappr` quickly gets very powerful when combining with other FP libraries. Here is an example when used with [Lodash FP](https://github.com/lodash/lodash/wiki/FP-Guide).
+`mappr` quickly gets very powerful when combining with other FP libraries. Here is an example when used with [Lodash FP][2].
 
 ```javascript
 var _ = require('lodash/fp');
@@ -263,5 +263,5 @@ const user = mapUser({
 // }
 ```
 
-[1]:	https://lodash.com/docs#get
-[2]:	https://github.com/lodash/lodash/wiki/FP-Guide
+[1]: https://lodash.com/docs#get
+[2]: https://github.com/lodash/lodash/wiki/FP-Guide
