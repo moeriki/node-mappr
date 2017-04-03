@@ -11,9 +11,7 @@ var _utils = require('../utils');
 
 var MATCHER_PROPERTY = 'MAPPR_WHEN_MATCHER';
 
-// private functions
-
-// utils
+// private
 
 var isDefaultMatcher = function isDefaultMatcher(func) {
   return (0, _utils.isFunction)(func) && !func[MATCHER_PROPERTY];

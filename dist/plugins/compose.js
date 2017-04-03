@@ -21,4 +21,4 @@ var compose = exports.compose = function compose(mappr) {
       }, {});
     };
   };
-}; // modules
+};

@@ -19,4 +19,4 @@ var array = exports.array = function array(mappr) {
       return !results || results.length === 0 ? undefined : results;
     }]));
   };
-}; // modules
+};

@@ -33,8 +33,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // exports
 
-// modules
-
 var castArray = function castArray(value) {
   return Array.isArray(value) ? value : [value];
 };
