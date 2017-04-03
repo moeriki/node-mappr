@@ -1,13 +1,11 @@
 /* eslint-env jest */
 /* eslint no-magic-numbers:0 */
 
-// modules
-
 import { eq, get } from 'lodash/fp';
 
 import mappr from '../../lib';
 
-// private functions
+// private
 
 const gt = (value1) => (value2) => value2 > value1;
 

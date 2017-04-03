@@ -1,7 +1,5 @@
 /* eslint-env jest */
 
-// modules
-
 import mappr from '../../lib';
 
 // tests

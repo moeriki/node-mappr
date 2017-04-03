@@ -1,7 +1,5 @@
 /* eslint-env jest */
 
-// modules
-
 import mappr from '../../lib';
 
 // fixture
@@ -14,7 +12,7 @@ const pojo = {
   streetNumber: '18',
 };
 
-// private variables
+// private
 
 let mapper, result;
 

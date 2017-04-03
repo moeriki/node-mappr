@@ -2,11 +2,9 @@
 
 'use strict';
 
-// modules
+const mapprES = require('./es');
 
-var mapprES = require('./es');
-
-var mapprCommonJS = require('./index');
+const mapprCommonJS = require('./index');
 
 // tests
 

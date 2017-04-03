@@ -8,7 +8,7 @@
     "object",
     "pojo"
   ],
-  "author": "Dieter Luypaert <dieterluypaert@gmail.com>",
+  "author": "Dieter Luypaert <dieterluypaert@icloud.com>",
   "license": "MIT",
   "repository": "git@github.com:Moeriki/node-mappr.git",
   "main": "index.js",

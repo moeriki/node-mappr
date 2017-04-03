@@ -1,10 +1,6 @@
 /* eslint-env jest */
 
-// vendor modules
-
 import { noop } from 'lodash';
-
-// modules
 
 import mappr from '../lib/core';
 
@@ -22,7 +18,7 @@ const pojo = {
   },
 };
 
-// private functions
+// private
 
 function setupAndTest() {
   // setup
