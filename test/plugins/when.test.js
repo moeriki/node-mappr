@@ -52,10 +52,12 @@ describe('switch', () => {
   it('should run matcher flow with condition result', () => {
     const mapper = mappr.when(
       'getKey',
+      mappr.match('ZERO', get('key0')),
       mappr.match('ONE', get('key1')),
       mappr.match(eq('TWO'), get('key2')),
       get('key3'),
     );
+    expect(mapper({ getKey: 'ZERO', key0: 0 })).toBe(0);
     expect(mapper({ getKey: 'ONE', key1: 'value1' })).toBe('value1');
     expect(mapper({ getKey: 'TWO', key2: 'value2' })).toBe('value2');
     expect(mapper({ getKey: null, key3: 'value3' })).toBe('value3');
