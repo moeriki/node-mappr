@@ -34,10 +34,11 @@ function switchWhen(cases, pojo, condition) {
   var matchResult = void 0;
 
   cases.filter(isMatcher).find(function (whenMatcher) {
-    return matchResult = whenMatcher(condition, pojo);
+    matchResult = whenMatcher(condition, pojo);
+    return matchResult !== undefined;
   });
 
-  if (matchResult) {
+  if (matchResult !== undefined) {
     return matchResult;
   }
 
