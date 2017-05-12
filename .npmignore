@@ -1,9 +1,10 @@
 .babelrc
+.editorconfig
 .eslintrc.js
 .gitignore
 .npmignore
-.nyc_output
-coverage
-node_modules
-src/
+.travis.yml
+coverage/
+node_modules/
+lib/
 test/

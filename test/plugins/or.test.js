@@ -1,6 +1,3 @@
-/* eslint-env jest */
-/* eslint no-magic-numbers:0 */
-
 import { apply, flow, get, pick, subtract, values } from 'lodash/fp';
 
 import mappr from '../../lib';

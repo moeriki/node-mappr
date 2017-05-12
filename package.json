@@ -16,7 +16,7 @@
     "lint": "eslint *.js lib/ test/",
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "build": "BABEL_ENV=production babel lib/ --ignore test.js --out-dir dist/",
+    "build": "BABEL_ENV=production babel lib/ --out-dir dist/",
     "preversion": "npm run build && npm run test && git add -A dist/",
     "precommit": "lint-staged",
     "prepush": "npm test"
@@ -24,11 +24,10 @@
   "jest": {
     "collectCoverageFrom": [
       "lib/[^.]**.js"
-    ],
-    "testEnvironment": "node"
+    ]
   },
   "lint-staged": {
-    "lib/*.js": "eslint"
+    "{lib,test}/*.js": "eslint"
   },
   "dependencies": {
     "lodash.get": "^4.4.2",

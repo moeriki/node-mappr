@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 import { noop } from 'lodash';
 
 import mappr from '../lib/core';
