@@ -71,7 +71,7 @@ mappr.compose( … );
 **ES Module**
 
 ```javascript
-import mappr from 'mappr/es';
+import mappr from 'mappr';
 
 mappr( … );
 mappr.compose( … );

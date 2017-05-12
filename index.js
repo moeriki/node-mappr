@@ -1,1 +1,3 @@
-module.exports = require('./dist').default;
+'use strict';
+
+module.exports = require('./dist/').default;
