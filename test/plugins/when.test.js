@@ -35,7 +35,7 @@ describe('if', () => {
     const mapper = mappr.when(
       () => true,
       mappr.when(
-        (pojo) => pojo.key === 'value',
+        (source) => source.key === 'value',
         get('key')
       )
     );

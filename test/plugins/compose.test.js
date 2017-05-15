@@ -4,7 +4,7 @@ import mappr from '../../lib';
 
 // fixture
 
-const pojo = {
+const source = {
   firstName: 'Dieter',
   lastName: 'Luypaert',
   city: 'Laken',
@@ -25,7 +25,7 @@ it('should merge mapper results into one object', () => {
     { address: ({ city, street, streetNumber }) => `${street} ${streetNumber}, ${city}` },
   );
   // test
-  result = mapper(pojo);
+  result = mapper(source);
   // verify
   expect(result.name).toBe('Dieter Luypaert');
   expect(result.address).toBe('Rue Mode Vliebergh 18, Laken');
@@ -38,7 +38,7 @@ it('should not merge undefined', () => {
     { address: () => undefined },
   );
   // test
-  result = mapper(pojo);
+  result = mapper(source);
   // verify
   expect(result.address).toBeUndefined();
   expect(result.city).toBe('Laken');

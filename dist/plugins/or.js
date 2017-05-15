@@ -11,7 +11,7 @@ var or = exports.or = function or(mappr) {
       mappers[_key] = arguments[_key];
     }
 
-    return function (pojo) {
+    return function (source) {
       var result = void 0;
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -21,7 +21,7 @@ var or = exports.or = function or(mappr) {
         for (var _iterator = mappers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var mapper = _step.value;
 
-          result = mappr(mapper)(pojo);
+          result = mappr(mapper)(source);
           if (result) {
             return result;
           }

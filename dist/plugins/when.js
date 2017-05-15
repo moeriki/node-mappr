@@ -21,20 +21,20 @@ var isMatcher = function isMatcher(func) {
   return (0, _utils.isFunction)(func) && func[MATCHER_PROPERTY];
 };
 
-function ifWhen(cases, pojo, condition) {
+function ifWhen(cases, source, condition) {
   if (condition && cases[0]) {
-    return cases[0](pojo);
+    return cases[0](source);
   } else if (!condition && cases[1]) {
-    return cases[1](pojo);
+    return cases[1](source);
   }
   return undefined;
 }
 
-function switchWhen(cases, pojo, condition) {
+function switchWhen(cases, source, condition) {
   var matchResult = void 0;
 
   cases.filter(isMatcher).find(function (whenMatcher) {
-    matchResult = whenMatcher(condition, pojo);
+    matchResult = whenMatcher(condition, source);
     return matchResult !== undefined;
   });
 
@@ -47,7 +47,7 @@ function switchWhen(cases, pojo, condition) {
     return matchResult;
   }
 
-  return defaultMatch(pojo);
+  return defaultMatch(source);
 }
 
 // exports
@@ -58,9 +58,9 @@ var match = exports.match = function match() {
       mappers[_key - 1] = arguments[_key];
     }
 
-    var internalMatch = function internalMatch(condition, pojo) {
+    var internalMatch = function internalMatch(condition, source) {
       var conditionResult = typeof matcher === 'function' ? matcher(condition) : matcher === condition;
-      return conditionResult ? _utils.flow.apply(undefined, mappers)(pojo) : undefined;
+      return conditionResult ? _utils.flow.apply(undefined, mappers)(source) : undefined;
     };
 
     internalMatch[MATCHER_PROPERTY] = true;
@@ -75,17 +75,17 @@ var when = exports.when = function when(mappr) {
       cases[_key2 - 1] = arguments[_key2];
     }
 
-    return function (pojo) {
+    return function (source) {
 
-      var condition = mappr(mapper)(pojo);
+      var condition = mappr(mapper)(source);
 
       if (cases.some(isMatcher)) {
         // treat as switch statement
-        return switchWhen(cases, pojo, condition);
+        return switchWhen(cases, source, condition);
       }
 
       // treat as if / else statement
-      return ifWhen(cases, pojo, condition);
+      return ifWhen(cases, source, condition);
     };
   };
 }; // end internalWhen

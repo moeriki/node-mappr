@@ -6,6 +6,6 @@ import mappr from '../../lib';
 
 it('should convert number', () => {
   const mapper = mappr.number('key');
-  const pojo = { key: '101' };
-  expect(mapper(pojo)).toBe(101);
+  const source = { key: '101' };
+  expect(mapper(source)).toBe(101);
 });

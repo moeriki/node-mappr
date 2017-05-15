@@ -65,9 +65,9 @@ var or = function or(defaultValue) {
   };
 };
 
-var spreadKeys = function spreadKeys(pojo) {
-  return Object.keys(pojo).reduce(function (result, key) {
-    (0, _lodash10.default)(result, key, pojo[key]);
+var spreadKeys = function spreadKeys(source) {
+  return Object.keys(source).reduce(function (result, key) {
+    (0, _lodash10.default)(result, key, source[key]);
     return result;
   }, {});
 };

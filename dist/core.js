@@ -10,7 +10,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 // private
 
-var mapPOJO = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys);
+var mapSource = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys);
 
 var applyMapper = function applyMapper(mapper) {
   return function (source) {
@@ -19,7 +19,7 @@ var applyMapper = function applyMapper(mapper) {
     } else if (typeof mapper === 'function') {
       return mapper(source);
     } else if ((0, _utils.isPlainObject)(mapper)) {
-      return mapPOJO((0, _utils.mapValues)(mapper, function (nestedMapper) {
+      return mapSource((0, _utils.mapValues)(mapper, function (nestedMapper) {
         return applyMapper(nestedMapper)(source);
       }));
     }

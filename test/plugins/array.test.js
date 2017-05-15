@@ -4,22 +4,22 @@ import mappr from '../../lib';
 
 it('should convert non array to array', () => {
   const mapper = mappr.array('key1');
-  const pojo = {
+  const source = {
     key1: 'Hello World!',
   };
-  expect(mapper(pojo)).toEqual(['Hello World!']);
+  expect(mapper(source)).toEqual(['Hello World!']);
 });
 
 it('should return undefined if no items', () => {
   const mapper = mappr.array('key1');
-  const pojo = {};
-  expect(mapper(pojo)).toEqual(undefined);
+  const source = {};
+  expect(mapper(source)).toEqual(undefined);
 });
 
 it('should leave array untouched', () => {
   const mapper = mappr.array('key1');
-  const pojo = {
+  const source = {
     key1: ['Hello World!'],
   };
-  expect(mapper(pojo)).toEqual(['Hello World!']);
+  expect(mapper(source)).toEqual(['Hello World!']);
 });

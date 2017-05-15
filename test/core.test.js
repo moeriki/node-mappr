@@ -4,7 +4,7 @@ import mappr from '../lib/core';
 
 // fixture
 
-const pojo = {
+const source = {
   gender: 'male',
   firstName: 'Dieter',
   middleName: 'moeriki',
@@ -28,11 +28,11 @@ function setupAndTest() {
     },
     'name.middle': 'middleName',
     'city': 'address.city',
-    'address': { street: (_pojo) => `${_pojo.address.street} ${_pojo.address.streetNumber}` },
+    'address': { street: (_source) => `${_source.address.street} ${_source.address.streetNumber}` },
     'country': 'country,',
   });
   // test
-  return mapper(pojo);
+  return mapper(source);
 }
 
 // tests

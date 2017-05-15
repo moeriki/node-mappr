@@ -5,8 +5,7 @@
   "keywords": [
     "functional",
     "mapper",
-    "object",
-    "pojo"
+    "object"
   ],
   "author": "Dieter Luypaert <dieterluypaert@icloud.com>",
   "license": "MIT",

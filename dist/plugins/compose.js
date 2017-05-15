@@ -15,9 +15,9 @@ var compose = exports.compose = function compose(mappr) {
       mappers[_key] = arguments[_key];
     }
 
-    return function (pojo) {
+    return function (source) {
       return mappers.reduce(function (result, mapper) {
-        return Object.assign(result, (0, _utils.omitByUndefined)(mappr(mapper)(pojo)));
+        return Object.assign(result, (0, _utils.omitByUndefined)(mappr(mapper)(source)));
       }, {});
     };
   };

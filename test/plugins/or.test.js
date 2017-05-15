@@ -5,10 +5,10 @@ import mappr from '../../lib';
 // tests
 
 it('should return first truthy value', () => {
-  const pojo1 = {
+  const source1 = {
     duration: 3,
   };
-  const pojo2 = {
+  const source2 = {
     start: 1,
     end: 4,
   };
@@ -17,8 +17,8 @@ it('should return first truthy value', () => {
     flow([pick(['end', 'start']), values, apply(subtract)]),
   );
   // test
-  const result1 = mapper(pojo1);
-  const result2 = mapper(pojo2);
+  const result1 = mapper(source1);
+  const result2 = mapper(source2);
   // verify
   expect(result1).toBe(3);
   expect(result2).toBe(3);
