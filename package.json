@@ -44,7 +44,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
-    "eslint-config-muriki": "^8.5.4",
+    "eslint-config-muriki": "^8.6.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jasmine": "^2.2.0",
     "eslint-plugin-node": "^5.0.0",
