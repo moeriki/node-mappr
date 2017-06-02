@@ -11,6 +11,8 @@ var number = exports.number = function number(mappr) {
       mappers[_key] = arguments[_key];
     }
 
-    return mappr.apply(undefined, mappers.concat([Number.parseInt]));
+    return mappr.apply(undefined, mappers.concat([Number.parseInt, function (result) {
+      return Number.isNaN(result) ? undefined : result;
+    }]));
   };
 };
