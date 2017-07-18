@@ -42,10 +42,14 @@ var flow = function flow() {
     funcs[_key] = arguments[_key];
   }
 
-  return function (initialValue) {
-    return funcs.reduce(function (value, func) {
-      return func(value);
-    }, initialValue);
+  return function (initialSource) {
+    for (var _len2 = arguments.length, additional = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      additional[_key2 - 1] = arguments[_key2];
+    }
+
+    return funcs.reduce(function (source, func) {
+      return func.apply(undefined, [source].concat(additional));
+    }, initialSource);
   };
 };
 
