@@ -10,5 +10,4 @@ it('should load default plugins', () => {
   expect(typeof mappr.compose).toBe('function');
   expect(typeof mappr.number).toBe('function');
   expect(typeof mappr.or).toBe('function');
-  expect(typeof mappr.when).toBe('function');
 });

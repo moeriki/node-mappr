@@ -51,15 +51,3 @@ Object.keys(_or).forEach(function (key) {
     }
   });
 });
-
-var _when = require('./when');
-
-Object.keys(_when).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _when[key];
-    }
-  });
-});
