@@ -12,5 +12,6 @@ module.exports = {
     'import/no-extraneous-dependencies': [2, {
       devDependencies: ['**/*.test.js'],
     }],
+    'node/no-unsupported-features': 0,
   },
 };
