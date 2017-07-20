@@ -28,6 +28,18 @@ Object.keys(_compose).forEach(function (key) {
   });
 });
 
+var _map = require('./map');
+
+Object.keys(_map).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _map[key];
+    }
+  });
+});
+
 var _number = require('./number');
 
 Object.keys(_number).forEach(function (key) {
@@ -48,18 +60,6 @@ Object.keys(_or).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _or[key];
-    }
-  });
-});
-
-var _when = require('./when');
-
-Object.keys(_when).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _when[key];
     }
   });
 });

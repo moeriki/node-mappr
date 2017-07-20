@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toPairs = exports.spreadKeys = exports.or = exports.omitByUndefined = exports.mapValues = exports.isPlainObject = exports.isFunction = exports.get = exports.flow = exports.castArray = undefined;
+exports.toPairs = exports.spreadKeys = exports.or = exports.omitByUndefined = exports.mapValues = exports.isPlainObject = exports.get = exports.flow = exports.castArray = undefined;
 
 var _lodash = require('lodash.get');
 
@@ -42,15 +42,15 @@ var flow = function flow() {
     funcs[_key] = arguments[_key];
   }
 
-  return function (initialValue) {
-    return funcs.reduce(function (value, func) {
-      return func(value);
-    }, initialValue);
-  };
-};
+  return function (initialSource) {
+    for (var _len2 = arguments.length, additional = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      additional[_key2 - 1] = arguments[_key2];
+    }
 
-var isFunction = function isFunction(func) {
-  return typeof func === 'function';
+    return funcs.reduce(function (source, func) {
+      return func.apply(undefined, [source].concat(additional));
+    }, initialSource);
+  };
 };
 
 var omitByUndefined = function omitByUndefined(source) {
@@ -75,7 +75,6 @@ var spreadKeys = function spreadKeys(source) {
 exports.castArray = castArray;
 exports.flow = flow;
 exports.get = _lodash2.default;
-exports.isFunction = isFunction;
 exports.isPlainObject = _lodash4.default;
 exports.mapValues = _lodash6.default;
 exports.omitByUndefined = omitByUndefined;

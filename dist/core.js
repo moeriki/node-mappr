@@ -13,14 +13,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var mapSource = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys);
 
 var applyMapper = function applyMapper(mapper) {
-  return function (source) {
+  return function () {
+    for (var _len = arguments.length, sources = Array(_len), _key = 0; _key < _len; _key++) {
+      sources[_key] = arguments[_key];
+    }
+
     if (typeof mapper === 'string') {
-      return (0, _utils.get)(source, mapper);
+      return (0, _utils.get)(sources[0], mapper);
     } else if (typeof mapper === 'function') {
-      return mapper(source);
+      return mapper.apply(undefined, sources);
     } else if ((0, _utils.isPlainObject)(mapper)) {
       return mapSource((0, _utils.mapValues)(mapper, function (nestedMapper) {
-        return applyMapper(nestedMapper)(source);
+        return applyMapper(nestedMapper).apply(undefined, sources);
       }));
     }
     throw new TypeError(`cannot apply mapper '${mapper}', need function|object|string, is ${typeof mapper}`);
@@ -30,8 +34,8 @@ var applyMapper = function applyMapper(mapper) {
 // exports
 
 var mappr = function mappr() {
-  for (var _len = arguments.length, mappers = Array(_len), _key = 0; _key < _len; _key++) {
-    mappers[_key] = arguments[_key];
+  for (var _len2 = arguments.length, mappers = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    mappers[_key2] = arguments[_key2];
   }
 
   return _utils.flow.apply(undefined, _toConsumableArray(mappers.map(applyMapper)));

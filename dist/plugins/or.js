@@ -11,7 +11,7 @@ var or = exports.or = function or(mappr) {
       mappers[_key] = arguments[_key];
     }
 
-    return function (source) {
+    return function () {
       var result = void 0;
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -21,7 +21,7 @@ var or = exports.or = function or(mappr) {
         for (var _iterator = mappers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var mapper = _step.value;
 
-          result = mappr(mapper)(source);
+          result = mappr(mapper).apply(undefined, arguments);
           if (result) {
             return result;
           }
