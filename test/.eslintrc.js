@@ -1,11 +1,7 @@
 module.exports = {
   root: true,
   extends: [
-    'muriki',
-    'muriki/env/test',
-    'muriki/plugins/jasmine',
-    'muriki/es/2015',
-    'muriki/es/modules',
+    'muriki/jest',
   ],
   parser: 'babel-eslint',
   rules: {

@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 import mappr from '../../lib';
 
 // fixture
