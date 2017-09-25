@@ -12,19 +12,21 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var mapSource = (0, _utils.flow)(_utils.omitByUndefined, _utils.spreadKeys);
 
-var applyMapper = function applyMapper(mapper) {
+var applyMapper = function applyMapper(mapper, destinationKey) {
   return function () {
     for (var _len = arguments.length, sources = Array(_len), _key = 0; _key < _len; _key++) {
       sources[_key] = arguments[_key];
     }
 
-    if (typeof mapper === 'string') {
+    if (mapper === true || mapper === 1) {
+      return (0, _utils.get)(sources[0], destinationKey);
+    } else if (typeof mapper === 'string') {
       return (0, _utils.get)(sources[0], mapper);
     } else if (typeof mapper === 'function') {
       return mapper.apply(undefined, sources);
     } else if ((0, _utils.isPlainObject)(mapper)) {
-      return mapSource((0, _utils.mapValues)(mapper, function (nestedMapper) {
-        return applyMapper(nestedMapper).apply(undefined, sources);
+      return mapSource((0, _utils.mapValues)(mapper, function (nestedMapper, nestedDestinationKey) {
+        return applyMapper(nestedMapper, nestedDestinationKey).apply(undefined, sources);
       }));
     }
     throw new TypeError(`cannot apply mapper '${mapper}', need function|object|string, is ${typeof mapper}`);

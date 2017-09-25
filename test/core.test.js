@@ -14,6 +14,7 @@ const source = {
     street: 'Rue Mode Vliebergh',
     streetNumber: '18',
   },
+  country: 'Belgium',
 };
 
 // private
@@ -21,7 +22,7 @@ const source = {
 function setupAndTest() {
   // setup
   const mapper = mappr({
-    'gender': 'gender',
+    'gender': 1,
     'name': {
       first: 'firstName',
       last: 'lastName',
@@ -29,7 +30,7 @@ function setupAndTest() {
     'name.middle': 'middleName',
     'city': 'address.city',
     'address': { street: (_source) => `${_source.address.street} ${_source.address.streetNumber}` },
-    'country': 'country,',
+    'country': true,
   });
   // test
   return mapper(source);
@@ -48,8 +49,8 @@ it('should not map undefined', () => {
   // setup & test
   const result = setupAndTest();
   // verify
-  expect(result.country).toBeUndefined();
-  expect('country' in result).toBe(false);
+  expect(result.province).toBeUndefined();
+  expect('province' in result).toBe(false);
 });
 
 it('should map root level property to nested property', () => {
@@ -81,9 +82,17 @@ it('should map using custom mapper', () => {
   expect(result.address.street).toBe('Rue Mode Vliebergh 18');
 });
 
-it('should throw if mapper is no function|object|string', () => {
+it('should pick properties', () => {
+  // setup & test
+  const result = setupAndTest();
+  // verify
+  expect(result.gender).toBe('male');
+  expect(result.country).toBe('Belgium');
+});
+
+it('should throw if mapper is no function|object|string|true|1', () => {
   // setup
-  const mapper = mappr({ key: true }); // true is not a valid mapper
+  const mapper = mappr({ key: 42 }); // true is not a valid mapper
   // test
   const test = () => mapper({});
   // verify
