@@ -1,0 +1,13 @@
+{
+  "extends": "noise",
+  "overrides": [
+    {
+      "files": "**/*.ts",
+      "extends": "noise-ts"
+    },
+    {
+      "files": "**/*.spec.ts",
+      "env": { "jest": true }
+    }
+  ]
+}
